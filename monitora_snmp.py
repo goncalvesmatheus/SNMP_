@@ -6,6 +6,8 @@ import time
 oid_inf = '.1.3.6.1.2.1.25.4.2.1.2'
 oid_mem = '.1.3.6.1.2.1.25.5.1.1.2'
 oid_cpu = '.1.3.6.1.2.1.25.5.1.1.1'
+oid_time = '.1.3.6.1.4.1.2021.100.4'
+#oid_time = '.1.3.6.1.2.1.25.1.2.0'
 scan = []
 host = ''
 porta = ''
@@ -13,7 +15,7 @@ session = Session(hostname=host, community='public',
                   version=2, remote_port=porta)
 
 
-# Função listar processos
+# Função listar processos.
 def lista_proc(session, scan):
     # Realiza o walk
     snmp = session.walk([oid_inf, oid_mem, oid_cpu])
@@ -30,6 +32,8 @@ def lista_proc(session, scan):
     print('\n')
     print(tabulate(scan, headers=["PID", "Name",
                                   "Memory", "CPU"], tablefmt="orgtbl"))
+
+# Função monitorar processo especificado pelo utilizador.
 
 
 def oidget(session, oidbulk):
@@ -54,7 +58,7 @@ def oidget(session, oidbulk):
                                            "Memory", "CPU", "Seconds"], tablefmt="psql"))
         time.sleep(1)
         my_time = my_time - 1
-        lista_get = [] # Limpa a lista
+        lista_get = []  # Limpa a lista
 
 
 # Inicio interação com o utilizador.
@@ -68,7 +72,7 @@ def menu():
         *************MENU***************
         1: Listar os processos
         2: Monitorar processo específico
-        3: Teste imprimir informação
+        3: Teste
         0: Sair
 
         Selecione uma opção: """)
