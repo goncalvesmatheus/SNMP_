@@ -8,9 +8,12 @@ oid_mem = '.1.3.6.1.2.1.25.5.1.1.2'
 oid_cpu = '.1.3.6.1.2.1.25.5.1.1.1'
 oid_time = '.1.3.6.1.4.1.2021.100.4'
 #oid_time = '.1.3.6.1.2.1.25.1.2.0'
+# Lista que recebe os processos listados dentro da função lista_proc
 scan = []
+# Variáveis que recebem o IP/Nome do host e porta que utilizamos para monitorar
 host = ''
 porta = ''
+# Sessão iniciada com as informações passadas pelo utilizador.
 session = Session(hostname=host, community='public',
                   version=2, remote_port=porta)
 
@@ -30,12 +33,12 @@ def lista_proc(session, scan):
     # Vai dividir a lista a cada 4 posições. (contando 0, 1, 2, 3)
     scan = [scan[x:x+4] for x in range(0, len(scan), 4)]
     print('\n')
+    # Imprime a lista de forma tabulada
     print(tabulate(scan, headers=["PID", "Name",
                                   "Memory", "CPU"], tablefmt="orgtbl"))
 
+
 # Função monitorar processo especificado pelo utilizador.
-
-
 def oidget(session, oidbulk):
     # Variáveis para realizar o get
     oid_inf_get = '.1.3.6.1.2.1.25.4.2.1.2.'+str(oidbulk)
@@ -58,7 +61,14 @@ def oidget(session, oidbulk):
                                            "Memory", "CPU", "Seconds"], tablefmt="psql"))
         time.sleep(1)
         my_time = my_time - 1
-        lista_get = []  # Limpa a lista
+        # Limpa a lista
+        lista_get = []
+
+# Função utilizada como teste no menu
+
+
+def teste():
+    print('Função de teste.')
 
 
 # Inicio interação com o utilizador.
@@ -89,9 +99,9 @@ def menu():
                     oidbulk = input('Digite o PID que necessita monitorar: ')
                     oidget(session, oidbulk)
                 elif escolha == 3 or escolha == '03':
-                    print('Fim teste')
+                    teste()
                 elif escolha == 0 or escolha == '00':
-                    print('\nSaindo do programa. \nObrigado por utilizar!')
+                    print('\nSaindo do programa. \nObrigado por utilizar!\n')
                     valida = True
                 else:
                     print('\nOpção inválida. Escolha uma das opções apresentada!\n')
@@ -102,6 +112,3 @@ def menu():
 
 
 menu()
-
-
-print("\nEnd")
