@@ -5,7 +5,7 @@ This first version, basically list all the processes current in the host, and yo
 
 ## Getting Started
 
-Easy to run, you need only install some libraries.
+Easy to run, you need only install some libraries and execute the script.
 
 ### Prerequisites
 
@@ -14,6 +14,7 @@ SNMP agent running in the host that will be monitored.
 ### Installing
 
 We need install the librarie Easy SNMP and tabulate.
+You can use the file requirements.txt to install all the correctly versions in your virtual environments.
 
 Install EasySNMP
 
@@ -21,10 +22,16 @@ Install EasySNMP
 pip3 install easysnmp
 ```
 
-And tabulate
+Install tabulate
 
 ```
 pip3 install tabulate
+```
+
+Install the requirements using the file.
+
+```
+pip3 install -r requirements.txt
 ```
 
 ## Running the script

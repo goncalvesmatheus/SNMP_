@@ -1,0 +1,2 @@
+easysnmp==0.2.5
+tabulate==0.8.6
