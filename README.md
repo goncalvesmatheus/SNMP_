@@ -14,7 +14,7 @@ SNMP agent running in the host that will be monitored.
 ### Installing
 
 We need install the librarie Easy SNMP and tabulate.
-You can use the file requirements.txt to install all the correctly versions in your virtual environments.
+You can also use the file requirements.txt to install all the correctly versions in your virtual environments.
 
 Install EasySNMP
 
