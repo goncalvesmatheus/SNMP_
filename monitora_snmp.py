@@ -6,8 +6,11 @@ import time
 oid_inf = '.1.3.6.1.2.1.25.4.2.1.2'
 oid_mem = '.1.3.6.1.2.1.25.5.1.1.2'
 oid_cpu = '.1.3.6.1.2.1.25.5.1.1.1'
-oid_time = '.1.3.6.1.4.1.2021.100.4'
-#oid_time = '.1.3.6.1.2.1.25.1.2.0'
+# Captura o horário que está correndo na máquina local e armazena em duas variáveis, separando hora e minuto.
+hora = str(time.localtime().tm_hour)
+minuto = str(time.localtime().tm_min)
+# oid_time = '.1.3.6.1.4.1.2021.100.4'
+# oid_time = '.1.3.6.1.2.1.25.1.2.0'
 # Lista que recebe os processos listados dentro da função lista_proc
 scan = []
 # Variáveis que recebem o IP/Nome do host e porta que utilizamos para monitorar
@@ -36,9 +39,13 @@ def lista_proc(session, scan):
     # Imprime a lista de forma tabulada
     print(tabulate(scan, headers=["PID", "Name",
                                   "Memory", "CPU"], tablefmt="orgtbl"))
-
+    print('')
+    print('Horário da máquina local: '+hora+' horas e '+minuto+' minutos.')
+    print('Horário da máquina remota: EM DESENVOLVIMENTO')
 
 # Função monitorar processo especificado pelo utilizador.
+
+
 def oidget(session, oidbulk):
     # Variáveis para realizar o get
     oid_inf_get = '.1.3.6.1.2.1.25.4.2.1.2.'+str(oidbulk)
@@ -63,6 +70,8 @@ def oidget(session, oidbulk):
         my_time = my_time - 1
         # Limpa a lista
         lista_get = []
+    print('\n Monitoramento finalizado as '+hora +
+          ' horas e '+minuto+' minutos. Horário local.')
 
 # Função utilizada como teste no menu
 
